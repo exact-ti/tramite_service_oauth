@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name="servicio-perfil")
 public interface IPerfilClient {
 	
-	@GetMapping("/perfil/{id}/acciones")
+	@GetMapping("/perfiles/{id}/acciones")
 	public Iterable<Map<String, Object>> findAccionesById(@PathVariable Long id);
 
 }

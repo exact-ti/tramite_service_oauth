@@ -1,1 +1,1 @@
-insert into usuario(nombre, password, perfil_id) values('ADMIN', '$2y$12$Pub8IwaYNQYvPzPPC4U0TePnR6/PcA702s6lN0CvH7ebaNqDHPFTi', 2), ('USUARIO', '$2y$12$Pub8IwaYNQYvPzPPC4U0TePnR6/PcA702s6lN0CvH7ebaNqDHPFTi',2);
+insert into usuario(nombre, correo, password, perfil_id) values('ADMIN', 'admin@exact.com.pe', '$2y$12$Pub8IwaYNQYvPzPPC4U0TePnR6/PcA702s6lN0CvH7ebaNqDHPFTi', 1), ('USUARIO', 'usuario@exact.com.pe', '$2y$12$Pub8IwaYNQYvPzPPC4U0TePnR6/PcA702s6lN0CvH7ebaNqDHPFTi',2);
