@@ -26,7 +26,7 @@ public class TokenInfoAdicional implements TokenEnhancer {
 		Usuario usuario =  usuarioDAO.getUsuarioByName(authentication.getName());
 		info.put("nombre", usuario.getNombre());
 		info.put("correo", usuario.getCorreo());
-		info.put("pefilId", usuario.getPerfilId());
+		info.put("perfilId", usuario.getPerfilId());
 		info.put("id", usuario.getId());
 		((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
 		return accessToken;
