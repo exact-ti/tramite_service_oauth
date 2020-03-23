@@ -11,19 +11,20 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Component;
 
-import com.exact.oauth.dao.UsuarioDAO;
-import com.exact.oauth.entity.Usuario;
+import com.exact.oauth.clients.ILoginClient;
+import com.exact.oauth.model.Usuario;
 
 @Component
 public class TokenInfoAdicional implements TokenEnhancer {
 
 	@Autowired
-	private UsuarioDAO usuarioDAO;
+	ILoginClient usuarioClient;
 	
 	@Override
 	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 		Map<String, Object> info =  new HashMap<String, Object>();
-		Usuario usuario =  usuarioDAO.getUsuarioByName(authentication.getName());
+		Usuario usuario =  usuarioClient.listarUsuarioPorUsername(authentication.getName());
+		info.put("username", usuario.getUsername());
 		info.put("nombre", usuario.getNombre());
 		info.put("correo", usuario.getCorreo());
 		info.put("perfilId", usuario.getPerfilId());

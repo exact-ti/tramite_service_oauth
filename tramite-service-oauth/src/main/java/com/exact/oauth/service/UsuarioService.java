@@ -14,14 +14,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.exact.oauth.clients.IPerfilClient;
-import com.exact.oauth.dao.UsuarioDAO;
-import com.exact.oauth.entity.Usuario;
+import com.exact.oauth.clients.ILoginClient;
+import com.exact.oauth.model.Usuario;
 
 @Service
 public class UsuarioService implements UserDetailsService {
 	
 	@Autowired
-	UsuarioDAO usuarioDAO;
+	ILoginClient usuarioClient;
 	
 	@Autowired
 	IPerfilClient perfilClient;
@@ -29,7 +29,7 @@ public class UsuarioService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Usuario usuario = usuarioDAO.getUsuarioByName(username);
+		Usuario usuario = usuarioClient.listarUsuarioPorUsername(username);
 		if (usuario == null) throw new UsernameNotFoundException(username);
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>() ; 
 		Iterable<Map<String, Object>> acciones = perfilClient.findAccionesById(usuario.getPerfilId());
