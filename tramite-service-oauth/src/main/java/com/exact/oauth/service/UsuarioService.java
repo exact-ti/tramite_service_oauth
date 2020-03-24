@@ -37,7 +37,7 @@ public class UsuarioService implements UserDetailsService {
 			authorities.add( new SimpleGrantedAuthority(accion.get("nombre").toString()    )  );					
 		}
 		
-		return new User(usuario.getNombre(), usuario.getPassword(), true , true, true, true, authorities);
+		return new User(usuario.getUsername(), usuario.getPassword(), true , true, true, true, authorities);
 	}
 
 }
