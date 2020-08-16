@@ -29,14 +29,14 @@ public class UsuarioService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Usuario usuario = usuarioClient.listarUsuarioPorUsername(username);
+		Usuario usuario = usuarioClient.listarUsuarioPorUsername(username.toUpperCase());
 		if (usuario == null) throw new UsernameNotFoundException(username);
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>() ; 
 		Iterable<Map<String, Object>> acciones = perfilClient.findAccionesById(usuario.getPerfilId());
 		for(Map<String, Object> accion  : acciones) {
 			authorities.add( new SimpleGrantedAuthority(accion.get("nombre").toString()    )  );					
 		}
-		
+		usuarioClient.guardarInicioDeSesion(usuario.getId());
 		return new User(usuario.getUsername(), usuario.getPassword(), true , true, true, true, authorities);
 	}
 

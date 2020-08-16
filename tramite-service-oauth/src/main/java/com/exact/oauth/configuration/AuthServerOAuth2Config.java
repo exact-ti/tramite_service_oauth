@@ -62,8 +62,8 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 		.secret(passwordEncoder.encode(clientSecret))
 		.scopes("write")//el alcance de nuestra aplicacion cliente, en este caso puede leer y escribir
 		.authorizedGrantTypes("password", "refresh_token")//el tipo de consesion de nuestra authenticacion// como vamos a obtener el jwt y obtener un nuevo token
-		.accessTokenValiditySeconds(3600)
-		.refreshTokenValiditySeconds(3600);
+		.accessTokenValiditySeconds(36000)
+		.refreshTokenValiditySeconds(72000);
 	}
 	
 	
